@@ -45,5 +45,6 @@
         <jarDirectory url="file://$MODULE_DIR$/web/WEB-INF/libs" recursive="false" type="SOURCES" />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="servlet-api" level="project" />
   </component>
 </module>

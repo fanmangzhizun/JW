@@ -26,5 +26,7 @@
         }
     %>
     <span><%=session.getId()%></span>
+<a href="/servlet">get方式请求servlet</a>
+<a href="/ddd/servlet2">get方式请求servlet</a>
 </body>
 </html>
