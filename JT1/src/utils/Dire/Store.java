@@ -55,7 +55,7 @@ public class Store {
         Iterator<Girls> g=keysets.iterator();//拿到迭代器对象
         while (g.hasNext()){
             Girls h=g.next();
-            sum += h.getMoney()*learn.get(h);//拿到单价乘数量，map键值对，g为键，xxx.get(g)为值
+            sum += h.getMoney() * learn.get(h);
         }
         this.setTotalprice(sum);
         return this.getTotalprice();
