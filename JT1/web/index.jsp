@@ -62,10 +62,17 @@
     a{
         text-decoration: none;
     }
+    a:visited{
+        color: #455A64;
+    }
+    a:hover{
+        color: red;
+    }
+
 </style>
 <body>
 <div class="top">
-    <h1>我的美女图库</h1>
+    <h1>美女租用系统</h1>
 </div>
 <div class="center">
     <%
@@ -79,7 +86,7 @@
     <div class="contanct" >
         <img src = "images/<%=girl.getImg()%>" alt = "失效" >
         <span > <%=girl.getName()%></span ><br>
-        <a href="details.jsp?id=<%=girl.getId()%>">详情</a>
+        <a href="details.jsp?id=<%=girl.getId()%>">详情</a><br>
     </div >
         <%    }
         break;

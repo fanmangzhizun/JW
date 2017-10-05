@@ -1,6 +1,10 @@
 <%@ page import="utils.Girl.Girls" %>
 <%@ page import="utils.DAO.GirlDAO" %>
-<%@ page import="java.util.ArrayList" %><%--
+<%@ page import="java.util.ArrayList" %>
+<%
+    String path=request.getContextPath();
+%>
+<%--
   Created by IntelliJ IDEA.
   User: faithpercious
   Date: 2017/10/2
@@ -48,18 +52,62 @@
         top: 100px;
         right: 0;
     }
+    a{
+        color: #455A64;
+        text-decoration: none;
+    }
+    a:hover{
+        cursor: pointer;
+        color: red;
+    }
+    #add:hover {
+        cursor: pointer;
+        color: cadetblue;
+    }
+    #del:hover{
+        cursor: pointer;
+        color: cadetblue;
+    }
 </style>
+<script>
+    function del() {
+        var num=parseInt(document.getElementById("num").value);
+        if(num>0)num--;
+        document.getElementById("num").value=num;
+    }
+    function add() {
+        var num=parseInt(document.getElementById("num").value);
+        num++;
+        document.getElementById("num").value=num;
+    }
+    function addorder(id) {
+        var num =parseInt(document.getElementById("num").value);
+        alert("您已选择编号为"+id+"的美女进行租用,租用天数为"+num+",祝您体验愉快");
+        location.href='<%=path%>/servlet?id='+id+'&num='+num+'&action=add'
+    }
+</script>
 <body>
 <% GirlDAO girlDAO=new GirlDAO();
     Girls girl= girlDAO.getGirlsById(Integer.parseInt(request.getParameter("id")));
     if (girl!=null){
 %>
-
-<h2>价格：<%=girl.getMoney()%></h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="index.jsp">返回首页</a>
+<div>
+<h2>价格：<%=girl.getMoney()%>/天</h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <h2>姓名:<%=girl.getName()%></h2>
+</div>
     <div class="main">
         <img src="images/<%=girl.getImg()%>" alt="图片已失效">
         <br>
+
+            <h2 >
+                <span>天数选择：</span>&nbsp;&nbsp;&nbsp;
+                <span id="del" onclick="del()">-</span>
+                <input id="num" type="text" name="num" value="1">
+                <span id="add" onclick="add()">+</span><br>
+                 &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;<a onclick="addorder(<%=girl.getId()%>)">进行租用</a>
+            </h2>
+        <a href="/servlet?action=show"><h2>查看租用清单</h2></a>
     </div>
 <%
     }
